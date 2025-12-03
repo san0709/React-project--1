@@ -1,16 +1,71 @@
-# React + Vite
+🎬 **MovieHub — React + Vite**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React app built with Vite that searches movies via the OMDb API, shows details, and supports pagination and basic filtering.
 
-Currently, two official plugins are available:
+⭐ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎯 Search movies by title (defaults to `Avengers`)
+- 📄 Show detailed info (plot, cast, IMDb rating)
+- 🧭 Filter by genre and year
+- ▶️ Pagination with a "Load More Movies" button (fetches more pages from OMDb)
+- 🖼️ Placeholder poster when a poster is unavailable
 
-## React Compiler
+🚀 Quick Start
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Install dependencies
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Add your OMDb API key (create a `.env` in the project root)
+
+```
+VITE_OMDB_API_KEY=your_api_key_here
+```
+
+Get a free key from https://www.omdbapi.com/apikey.aspx 🔑
+
+3. Start dev server
+
+```bash
+npm run dev
+```
+
+4. Open the app in your browser (Vite will show the correct URL, typically `http://localhost:5173`)
+
+📦 Available Scripts
+
+- `npm run dev` — Starts the dev server
+- `npm run build` — Creates a production build
+- `npm run preview` — Preview the production build locally
+
+⚙️ Environment
+
+- `VITE_OMDB_API_KEY` — (required) Your OMDb API key
+
+Notes
+
+- The OMDb search endpoint returns 10 results per page. This app requests pages and appends results when you click "Load More Movies".
+- The app fetches extra details for each search result (this means each displayed movie triggers a details request).
+
+🗂 Project Structure (important files)
+
+- `src/App.jsx` — Main application and pagination logic
+- `src/services/omdb.js` — Wrapper around OMDb API (`searchMovies(term, page)` and `getMovieDetails(id)`)
+- `src/components/` — UI components (`MovieCard`, `MovieModal`, `SearchBar`, `FilterBar`, `StarRating`)
+
+Troubleshooting
+
+- If you see "API Key Missing", ensure `.env` has the correct `VITE_OMDB_API_KEY` and restart the dev server.
+- If the dev server reports a port in use, Vite will automatically try another port (e.g. 5174).
+
+Contributing
+
+- Feel free to open issues or PRs. Ideas: infinite scroll, caching movie details, or converting to TypeScript.
+
+License
+
+- MIT (or change as desired)
+
+— Happy browsing! 🍿
